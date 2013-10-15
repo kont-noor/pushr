@@ -258,24 +258,17 @@ __END__
 
 
 @@ deployed
-- if @pushr.success
-  %div.success
-    %h2
+%div{:class => @pushr.success ? 'success' : 'failure'}
+  %h2
+    - if @pushr.success
       Application deployed successfully.
-    %form{ 'action' => "", :method => 'get' }
-      %p
-        %input{ 'type' => 'submit', 'value' => 'Return to index' }
-    %pre
-      = @pushr.cap_output
-- else
-  %div.failure
-    %h2
+    - else
       There were errors when deploying the application!
-    %form{ 'action' => "", :method => 'get' }
-      %p
-        %input{ 'type' => 'submit', 'value' => 'Return to index' }
-    %pre
-      = @pushr.cap_output
+  %form{ 'action' => "", :method => 'get' }
+    %p
+      %input{ 'type' => 'submit', 'value' => 'Return to index' }
+  %pre
+    = @pushr.cap_output
 
 @@ style
 body
